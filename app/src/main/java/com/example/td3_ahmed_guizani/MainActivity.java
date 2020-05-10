@@ -69,25 +69,26 @@ public class MainActivity extends AppCompatActivity {
       Log.d("ahmd", "before makeApiCall: ");
         Call<RestPokemonResponse> call = pokeApi.getPokemonResponse();
         call.enqueue(new Callback<RestPokemonResponse>() {
+                         @Override
+                         public void onResponse(Call<RestPokemonResponse> call, Response<RestPokemonResponse> response) {
+                             Log.d("ahmd", "inside makeApiCall ");
+                             if (response.isSuccessful() && response.body() != null){
+                                 List<Pokemon> pokemonList = response.body().getResults();
+                                 Toast.makeText(getApplicationContext(), "Api Success", Toast.LENGTH_SHORT).show();
 
-            @Override
-            public void onResponse(Call<RestPokemonResponse> call, Response<RestPokemonResponse> response) {
-              Log.d("ahmd", "inside makeApiCall ");
-                if (response.isSuccessful() && response.body() != null){
-                    List<Pokemon> pokemonList = response.body().getResults();
-                    Toast.makeText(getApplicationContext(), "Api Success", Toast.LENGTH_SHORT).show();
+                             } else {
+                                 showError();
+                             }
+                         }
 
-                } else {
-                    showError();
-                }
-            }
+                         @Override
+                         public void onFailure(Call<RestPokemonResponse> call, Throwable t) {
+                             showError();
+                         }
+            });
 
-            @Override
-            public void onFailure(Call<RestPokemonResponse> call, Throwable t) {
-                showError();
-            }
-        });
-        Log.d("ahmd", "After makeApiCall: ");
+
+                Log.d("ahmd", "After makeApiCall: ");
     }
 
     private void showError() {
