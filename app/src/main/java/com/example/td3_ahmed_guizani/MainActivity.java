@@ -70,20 +70,22 @@ public class MainActivity extends AppCompatActivity {
 
         PokeApi pokeApi = retrofit.create(PokeApi.class);
 
-        Call<List<RestPokemonResponse> call = pokeApi.getPokemonResponse();
-        call.enqueue(new Callback<List<RestPokemonResponse>>() {
+        Call<RestPokemonResponse> call = pokeApi.getPokemonResponse();
+        call.enqueue(new Callback<RestPokemonResponse>() {
             @Override
-            public void onResponse(Call<List<RestPokemonResponse>> call, Response<List<RestPokemonResponse>> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    List<Pokemon> pokemonList = response.body().get();
-                    Toast.makeText(getApplicationContext(), "yeah!!! Api Success", Toast.LENGTH_SHORT).show();
+            public void onResponse(Call<RestPokemonResponse> call, Response<RestPokemonResponse> response) {
+                if (response.isSuccessful() && response.body() != null){
+
+                        List<Pokemon> pokemonList = response.body().getResults();
+                    Toast.makeText(getApplicationContext(), "Yeah!!! Api Success", Toast.LENGTH_SHORT).show();
+
                 } else {
                     showError();
                 }
             }
 
             @Override
-            public void onFailure(Call<List<RestPokemonResponse>> call, Throwable t) {
+            public void onFailure(Call<RestPokemonResponse> call, Throwable t) {
                 showError();
 
             }
@@ -93,4 +95,6 @@ public class MainActivity extends AppCompatActivity {
     private void showError() {
         Toast.makeText(getApplicationContext(), "Oops!!! Api Error", Toast.LENGTH_SHORT).show();
     }
+
+
 }
