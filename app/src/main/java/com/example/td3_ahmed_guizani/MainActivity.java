@@ -1,6 +1,7 @@
 package com.example.td3_ahmed_guizani;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,9 +32,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-       showList();
-       makeApiCall();
+        showList();
+        makeApiCall();
 
     }
 
@@ -69,15 +69,17 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
         PokeApi pokeApi = retrofit.create(PokeApi.class);
-
+        Log.d("Ahmd", "before makeApiCall: ");
         Call<RestPokemonResponse> call = pokeApi.getPokemonResponse();
         call.enqueue(new Callback<RestPokemonResponse>() {
+
             @Override
             public void onResponse(Call<RestPokemonResponse> call, Response<RestPokemonResponse> response) {
-                if (response.isSuccessful() && response.body() != null){
+                Log.d("ahmd", "inside makeApicall ");
 
-                        List<Pokemon> pokemonList = response.body().getResults();
-                    Toast.makeText(getApplicationContext(), "Yeah!!! Api Success", Toast.LENGTH_SHORT).show();
+                if (response.isSuccessful() && response.body() != null){
+                    List<Pokemon> pokemonList = response.body().getResults();
+                    Toast.makeText(getApplicationContext(), "Api Success", Toast.LENGTH_SHORT).show();
 
                 } else {
                     showError();
@@ -87,9 +89,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<RestPokemonResponse> call, Throwable t) {
                 showError();
-
             }
         });
+        Log.d("ahmd", "After makeApiCall: ");
     }
 
     private void showError() {
