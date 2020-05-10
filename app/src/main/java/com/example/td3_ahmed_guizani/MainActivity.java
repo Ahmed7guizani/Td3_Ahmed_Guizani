@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call<RestPokemonResponse> call, Response<RestPokemonResponse> response) {
-                Log.d("ahmd", "inside makeApicall ");
+                Log.d("ahmd", "inside makeApiCall ");
 
                 if (response.isSuccessful() && response.body() != null){
                     List<Pokemon> pokemonList = response.body().getResults();
