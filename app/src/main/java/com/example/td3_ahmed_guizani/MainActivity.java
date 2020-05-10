@@ -38,15 +38,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showList() {
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        // use this setting to
-        // improve performance if you know that changes
-        // in content do not change the layout size
-        // of the RecyclerView
+        recyclerView = (RecyclerView)findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
-        // use a linear layout manager
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+
+
         List<String> input = new ArrayList<>();
         for (int i = 0; i < 100; i++) {
             input.add("Test" + i);
@@ -69,14 +66,13 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
         PokeApi pokeApi = retrofit.create(PokeApi.class);
-        Log.d("Ahmd", "before makeApiCall: ");
+      Log.d("ahmd", "before makeApiCall: ");
         Call<RestPokemonResponse> call = pokeApi.getPokemonResponse();
         call.enqueue(new Callback<RestPokemonResponse>() {
 
             @Override
             public void onResponse(Call<RestPokemonResponse> call, Response<RestPokemonResponse> response) {
-                Log.d("ahmd", "inside makeApiCall ");
-
+              Log.d("ahmd", "inside makeApiCall ");
                 if (response.isSuccessful() && response.body() != null){
                     List<Pokemon> pokemonList = response.body().getResults();
                     Toast.makeText(getApplicationContext(), "Api Success", Toast.LENGTH_SHORT).show();
@@ -95,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showError() {
-        Toast.makeText(getApplicationContext(), "Oops!!! Api Error", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Api Error", Toast.LENGTH_SHORT).show();
     }
 
 
