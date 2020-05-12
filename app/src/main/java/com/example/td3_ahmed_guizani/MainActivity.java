@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -32,24 +31,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        showList();
+
         makeApiCall();
 
     }
 
-    private void showList() {
+    private void showList(List<Pokemon> pokemonList) {
         recyclerView = (RecyclerView)findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
 
-        List<String> input = new ArrayList<>();
-        for (int i = 0; i < 100; i++) {
-            input.add("Test" + i);
-        }
-        // define an adapter
-        mAdapter = new ListAdapter(input);
+        mAdapter = new ListAdapter(pokemonList);
         recyclerView.setAdapter(mAdapter);
     }
 
@@ -74,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                              Log.d("ahmd", "inside Callback ");
                              if (response.isSuccessful() && response.body() != null){
                                  List<Pokemon> pokemonList = response.body().getResults();
-                                 Toast.makeText(getApplicationContext(), "Api Success", Toast.LENGTH_SHORT).show();
+                                 showList(pokemonList);
 
                              } else {
                                 showError();
