@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                                  Toast.makeText(getApplicationContext(), "Api Success", Toast.LENGTH_SHORT).show();
 
                              } else {
-                                 showError();
+                                showError();
                              }
                          }
 
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("ahmd", "After makeApiCall: ");
     }
 
-    private void showError() {
+   private void showError() {
         Toast.makeText(getApplicationContext(), "Api Error", Toast.LENGTH_SHORT).show();
     }
 
