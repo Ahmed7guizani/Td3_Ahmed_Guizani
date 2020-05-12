@@ -1,6 +1,7 @@
 package com.example.td3_ahmed_guizani;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -65,12 +66,12 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
         PokeApi pokeApi = retrofit.create(PokeApi.class);
-      /*Log.d("ahmd", "before makeApiCall: ");*/
+      Log.d("ahmd", "before Callback: ");
         Call<RestPokemonResponse> call = pokeApi.getPokemonResponse();
         call.enqueue(new Callback<RestPokemonResponse>() {
                          @Override
                          public void onResponse(Call<RestPokemonResponse> call, Response<RestPokemonResponse> response) {
-                            /* Log.d("ahmd", "inside makeApiCall ");*/
+                             Log.d("ahmd", "inside Callback ");
                              if (response.isSuccessful() && response.body() != null){
                                  List<Pokemon> pokemonList = response.body().getResults();
                                  Toast.makeText(getApplicationContext(), "Api Success", Toast.LENGTH_SHORT).show();
@@ -87,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
             });
 
 
-              /*  Log.d("ahmd", "After makeApiCall: ");*/
+               Log.d("ahmd", "After Callback: ");
     }
 
    private void showError() {
