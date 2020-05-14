@@ -12,7 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.List;
 
 import retrofit2.Call;
@@ -42,7 +44,24 @@ public class MainActivity extends AppCompatActivity {
                 .setLenient()
                 .create();
 
-        makeApiCall();
+         List<Pokemon> pokemonList = getDataFromCache();
+         if(pokemonList != null){
+             showList(pokemonList);
+         } else {
+             makeApiCall();
+         }
+
+    }
+
+    private List<Pokemon> getDataFromCache() {
+        String jsonPokemon = sharedPreferences.getString("jsonPokemonList", null);
+        if(jsonPokemon == null){
+            return null;
+        } else {
+            Type listType = new TypeToken<List<Pokemon>>() {}.getType();
+            return gson.fromJson(jsonPokemon, listType);
+        }
+
 
     }
 
@@ -98,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
                 .edit()
                 .putString("jsonPokemonList", "jsonString")
                 .apply();
+
         Toast.makeText(getApplicationContext(), "List Saved", Toast.LENGTH_SHORT).show();
     }
 
