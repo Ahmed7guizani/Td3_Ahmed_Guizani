@@ -1,5 +1,7 @@
 package com.example.td3_ahmed_guizani;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -26,11 +28,19 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ListAdapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
+    private SharedPreferences sharedPreferences;
+    private Gson gson;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        sharedPreferences = getSharedPreferences("application_esiea", Context.MODE_PRIVATE);
+
+         gson = new GsonBuilder()
+                .setLenient()
+                .create();
 
         makeApiCall();
 
@@ -50,10 +60,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void makeApiCall(){
-        Gson gson = new GsonBuilder()
-                .setLenient()
-                .create();
-
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
@@ -68,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
                              Log.d("ahmd", "inside Callback ");
                              if (response.isSuccessful() && response.body() != null){
                                  List<Pokemon> pokemonList = response.body().getResults();
+                                 saveList(pokemonList);
                                  showList(pokemonList);
 
                              } else {
@@ -85,7 +92,16 @@ public class MainActivity extends AppCompatActivity {
                Log.d("ahmd", "After Callback: ");
     }
 
-   private void showError() {
+    private void saveList(List<Pokemon> pokemonList) {
+        String jsonString = gson.toJson(pokemonList);
+        sharedPreferences
+                .edit()
+                .putString("jsonPokemonList", "jsonString")
+                .apply();
+        Toast.makeText(getApplicationContext(), "List Saved", Toast.LENGTH_SHORT).show();
+    }
+
+    private void showError() {
         Toast.makeText(getApplicationContext(), "Api Error", Toast.LENGTH_SHORT).show();
     }
 
