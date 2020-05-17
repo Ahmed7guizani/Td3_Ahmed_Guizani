@@ -24,6 +24,7 @@ public class Pokemon {
         return img;
     }
 
+
     public String getHeight() {
         return height;
     }

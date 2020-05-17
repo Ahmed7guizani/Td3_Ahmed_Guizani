@@ -1,15 +1,22 @@
 package com.example.td3_ahmed_guizani;
 
+import android.content.Context;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
+    Context context;
     private List<Pokemon> values;
 
     // Provide a reference to the views for each data item
@@ -19,6 +26,8 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         // each data item is just a string in this case
         TextView txtHeader;
         TextView txtFooter;
+        ImageView imageView;
+
 
         View layout;
 
@@ -27,6 +36,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
             layout = v;
             txtHeader = (TextView) v.findViewById(R.id.firstLine);
             txtFooter = (TextView) v.findViewById(R.id.secondLine);
+            imageView = (ImageView) v.findViewById(R.id.icon);
 
         }
     }
@@ -42,9 +52,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public ListAdapter(List<Pokemon> myDataset) {
-        values = myDataset;
-    }
+    public ListAdapter(List<Pokemon> myDataset) { values = myDataset; }
 
     // Create new views (invoked by the layout manager)
     @Override
@@ -59,13 +67,17 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     }
 
     // Replace the contents of a view (invoked by the layout manager)
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
+
         final Pokemon currentPokemon = values.get(position);
+        Glide.with(context).load(currentPokemon.getImg()).into(holder.imageView);
         holder.txtHeader.setText(currentPokemon.getName());
         holder.txtFooter.setText(currentPokemon.getNum());
+
     }
 
     // Return the size of your dataset (invoked by the layout manager)
