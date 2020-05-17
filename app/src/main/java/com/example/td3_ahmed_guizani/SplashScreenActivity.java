@@ -15,7 +15,6 @@ public class SplashScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
 
         //rediriger vers la liste des pokemon apres 5 secondes
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
