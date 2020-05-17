@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
 
-        mAdapter = new ListAdapter(pokemonList);
+        mAdapter = new ListAdapter(pokemonList, getApplicationContext());
         recyclerView.setAdapter(mAdapter);
     }
 

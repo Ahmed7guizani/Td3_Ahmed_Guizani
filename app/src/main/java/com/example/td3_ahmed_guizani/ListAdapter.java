@@ -16,7 +16,7 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
-    Context context;
+    private Context context;
     private List<Pokemon> values;
 
     // Provide a reference to the views for each data item
@@ -52,7 +52,10 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public ListAdapter(List<Pokemon> myDataset) { values = myDataset; }
+    public ListAdapter(List<Pokemon> myDataset, Context context) {
+        this.context = context;
+        values = myDataset;
+    }
 
     // Create new views (invoked by the layout manager)
     @Override
