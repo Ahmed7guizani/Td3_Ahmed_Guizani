@@ -58,9 +58,12 @@ public class MainActivity extends AppCompatActivity {
         if(jsonPokemon == null){
             return null;
         } else {
+
             Type listType = new TypeToken<List<Pokemon>>(){}.getType();
             return gson.fromJson(jsonPokemon, listType);
+
         }
+
 
 
     }
@@ -117,8 +120,6 @@ public class MainActivity extends AppCompatActivity {
                 .edit()
                 .putString(Constants.KEY_POKEMON_LIST, "jsonString")
                 .apply();
-
-        Toast.makeText(getApplicationContext(), "List Saved", Toast.LENGTH_SHORT).show();
     }
 
     private void showError() {
