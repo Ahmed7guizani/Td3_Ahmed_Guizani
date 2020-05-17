@@ -3,19 +3,10 @@ package com.example.td3_ahmed_guizani;
 import java.util.List;
 
 public class RestPokemonResponse {
-    private Integer count;
-    private String next;
-    private List<Pokemon> results;
 
-    public Integer getCount() {
-        return count;
-    }
+    private List<Pokemon> pokemon;
 
-    public String getNext() {
-        return next;
-    }
-
-    public List<Pokemon> getResults() {
-        return results;
+    public List<Pokemon> getPokemon() {
+        return pokemon;
     }
 }

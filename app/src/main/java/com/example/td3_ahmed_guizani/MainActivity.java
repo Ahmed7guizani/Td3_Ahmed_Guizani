@@ -25,7 +25,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String BASE_URL = "https://pokeapi.co/";
+    private static final String BASE_URL = "https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/";
 
     private RecyclerView recyclerView;
     private ListAdapter mAdapter;
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         if(jsonPokemon == null){
             return null;
         } else {
-            Type listType = new TypeToken<List<Pokemon>>() {}.getType();
+            Type listType = new TypeToken<List<Pokemon>>(){}.getType();
             return gson.fromJson(jsonPokemon, listType);
         }
 
@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
                          public void onResponse(Call<RestPokemonResponse> call, Response<RestPokemonResponse> response) {
                              Log.d("ahmd", "inside Callback ");
                              if (response.isSuccessful() && response.body() != null){
-                                 List<Pokemon> pokemonList = response.body().getResults();
+                                 List<Pokemon> pokemonList = response.body().getPokemon();
                                  saveList(pokemonList);
                                  showList(pokemonList);
 
