@@ -1,4 +1,4 @@
-package com.example.td3_ahmed_guizani;
+package com.example.td3_ahmed_guizani.presentation.model;
 
 import java.util.List;
 

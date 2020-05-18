@@ -1,4 +1,4 @@
-package com.example.td3_ahmed_guizani;
+package com.example.td3_ahmed_guizani.presentation.view;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -10,6 +10,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.td3_ahmed_guizani.Constants;
+import com.example.td3_ahmed_guizani.R;
+import com.example.td3_ahmed_guizani.data.PokeApi;
+import com.example.td3_ahmed_guizani.presentation.model.Pokemon;
+import com.example.td3_ahmed_guizani.presentation.model.RestPokemonResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
