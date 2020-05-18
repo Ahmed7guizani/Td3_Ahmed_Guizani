@@ -1,4 +1,4 @@
-# Td3_Ahmed_Guizani
+# Ahmed_Guizani
 
 First Android project with JAVA
 
