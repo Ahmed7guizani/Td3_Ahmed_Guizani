@@ -1,6 +1,5 @@
 package com.example.td3_ahmed_guizani.presentation.view;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -9,9 +8,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.td3_ahmed_guizani.R;
+import com.example.td3_ahmed_guizani.Singletons;
 import com.example.td3_ahmed_guizani.presentation.controller.MainController;
 import com.example.td3_ahmed_guizani.presentation.model.Pokemon;
-import com.google.gson.GsonBuilder;
 
 import java.util.List;
 
@@ -32,11 +31,8 @@ public class MainActivity extends AppCompatActivity {
 
         controller = new MainController(
                 this,
-                 new GsonBuilder()
-                        .setLenient()
-                        .create(),
-                 getSharedPreferences("application_esiea", Context.MODE_PRIVATE)
-
+                Singletons.getGson(),
+                Singletons.getSharedPreferencesInstance(getApplicationContext())
         );
         controller.onStart();
     }

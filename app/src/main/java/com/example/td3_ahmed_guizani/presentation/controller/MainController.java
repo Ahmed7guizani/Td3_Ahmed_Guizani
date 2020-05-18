@@ -4,7 +4,7 @@ import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.example.td3_ahmed_guizani.Constants;
-import com.example.td3_ahmed_guizani.data.PokeApi;
+import com.example.td3_ahmed_guizani.Singletons;
 import com.example.td3_ahmed_guizani.presentation.model.Pokemon;
 import com.example.td3_ahmed_guizani.presentation.model.RestPokemonResponse;
 import com.example.td3_ahmed_guizani.presentation.view.MainActivity;
@@ -17,8 +17,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainController {
 
@@ -43,14 +41,9 @@ public class MainController {
     }
 
     private void makeApiCall(){
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
 
-        PokeApi pokeApi = retrofit.create(PokeApi.class);
         Log.d("ahmd", "before Callback: ");
-        Call<RestPokemonResponse> call = pokeApi.getPokemonResponse();
+        Call<RestPokemonResponse> call = Singletons.getPokeApi().getPokemonResponse();
         call.enqueue(new Callback<RestPokemonResponse>() {
             @Override
             public void onResponse(Call<RestPokemonResponse> call, Response<RestPokemonResponse> response) {
