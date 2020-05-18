@@ -3,4 +3,6 @@
     <string name="example_application">Example application</string>
     <string name="description">Description</string>
     <string name="img_done">TODO</string>
+    <string name="splashscreen1_done">splashscreen1_done</string>
+    <string name="splashscreen2_done">splashscreen2_done</string>
 </resources>
