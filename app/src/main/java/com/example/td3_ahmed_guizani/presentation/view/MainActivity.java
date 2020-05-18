@@ -46,7 +46,13 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
 
-        mAdapter = new ListAdapter(pokemonList, getApplicationContext());
+        mAdapter = new ListAdapter(pokemonList, getApplicationContext(), new ListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Pokemon item) {
+                controller.onItemClick(item);
+
+            }
+        });
         recyclerView.setAdapter(mAdapter);
     }
 
@@ -59,4 +65,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public void navigateToDetails(Pokemon pokemon) {
+
+    }
 }
