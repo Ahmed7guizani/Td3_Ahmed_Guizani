@@ -5,4 +5,9 @@
     <string name="img_done">TODO</string>
     <string name="splashscreen1_done">splashscreen1_done</string>
     <string name="splashscreen2_done">splashscreen2_done</string>
+    <string name="type">Type</string>
+    <string name="height">Height</string>
+    <string name="weight">Weight</string>
+    <string name="pikachu">Pikachu</string>
+    <string name="weakness">weakness</string>
 </resources>

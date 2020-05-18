@@ -1,5 +1,6 @@
 package com.example.td3_ahmed_guizani.presentation.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -66,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void navigateToDetails(Pokemon pokemon) {
-
+        Intent myIntent = new Intent(MainActivity.this, DetailActivity.class);
+        myIntent.putExtra("pokemonKey", Singletons.getGson().toJson(pokemon));
+        MainActivity.this.startActivity(myIntent);
     }
 }
