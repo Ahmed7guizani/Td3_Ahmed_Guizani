@@ -42,7 +42,7 @@ https://github.com/Ahmed7guizani/Td3_Ahmed_Guizani/blob/master/splashscreen%2Bpr
 
 * Affiche la Liste des Pokémons 
 
-https://github.com/Ahmed7guizani/pokeimage/blob/master/listdespokemons.JPG
+Td3_Ahmed_Guizani/listdespokemons.JPG
 
 ### Ecran Détails Pokémon
 
