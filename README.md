@@ -36,7 +36,7 @@ cette application affiche une Liste des Pokémons, leurs Details à l'aide du li
 
 * SplashScreen s'affiche dés le lancement de L'application
 
-https://github.com/Ahmed7guizani/pokeimage/blob/master/splashscreen%2Bprocessbar.JPG
+splashscreen+processbar.JPG
 
 ### Ecran Home 
 
